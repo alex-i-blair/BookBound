@@ -17,7 +17,7 @@ function App() {
 
     fetch();
   }, []);
-  
+
   async function handleLogout() {
     await logout();
     setCurrentUser(null);
@@ -25,46 +25,31 @@ function App() {
   return (
     <Router>
       <div className="App">
-     
         <header className="App-header">
-          {
-            currentUser && <div className='nav-links'> 
-              <NavLink to='/search-page'>Search</NavLink>
+          {currentUser && (
+            <div className="nav-links">
+              <NavLink to="/search-page">Search</NavLink>
               <button onClick={handleLogout}>Logout</button>
-                
             </div>
-                
-          }
-    
+          )}
         </header>
         <Switch>
-          <Route exact path='/'>
-            {
-              currentUser
-                ? <Redirect to='/reading-list' />
-                : <AuthPage setCurrentUser={setCurrentUser} />
-            }
-
+          <Route exact path="/">
+            {currentUser ? (
+              <Redirect to="/reading-list" />
+            ) : (
+              <AuthPage setCurrentUser={setCurrentUser} />
+            )}
           </Route>
-          <Route exact path='/reading-list'>
-            {
-              currentUser ? 
-                <ReadingList /> :
-                <Redirect to='/' />
-            }
+          <Route exact path="/reading-list">
+            {currentUser ? <ReadingList /> : <Redirect to="/" />}
           </Route>
-          <Route exact path='/search-page'>
-            {
-              currentUser ? 
-                <SearchPage /> :
-                <Redirect to='/' />
-            }
+          <Route exact path="/search-page">
+            {currentUser ? <SearchPage /> : <Redirect to="/" />}
           </Route>
-
         </Switch>
-      
       </div>
-    </ Router>
+    </Router>
   );
 }
 
