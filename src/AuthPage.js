@@ -31,15 +31,15 @@ export default function AuthPage({ setCurrentUser }) {
           required
           placeholder="Email"
           type="email"
-          value={emailForm}
-          onChange={(e) => setEmailForm(e.target.value)}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <input
           required
           placeholder="Password"
           type="password"
-          value={passwordForm}
-          onChange={(e) => setPasswordForm(e.target.value)}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <div className="auth-btns">
           <button className="sign-in-btn">Sign In</button>
