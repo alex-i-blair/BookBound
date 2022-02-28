@@ -29,6 +29,7 @@ function App() {
         <header className="App-header">
           {
             currentUser && <div className='nav-links'> 
+              <NavLink to='/search-page'>Search</NavLink>
               <button onClick={handleLogout}>Logout</button>
                 
             </div>

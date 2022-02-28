@@ -48,9 +48,9 @@ export async function getReadingList() {
 }
 
 export async function searchBooks(query) {
-  const response = await fetch(`/.netlify/functions/books-endpoint?searchQuery=${query}`);
+  const response = await fetch(`/.netlify/functions/book-endpoint?searchQuery=${query}`);
   const json = await response.json();
-  return json.data.results;
+  return json.data.items;
 }
 
 export async function removeFromReadingList(id) {
