@@ -7,6 +7,7 @@ export default function Book({ book }) {
 
   return (
     <Link to={`/book-details/${book.id}`}>
+      
       <div className="book">
         <h3>{book.volumeInfo.title}</h3>
         <p>by: {authors}</p>
