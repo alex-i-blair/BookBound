@@ -57,3 +57,9 @@ export async function removeFromReadingList(id) {
   const response = await client.from('reading_list').delete().match({ id }).single();
   return checkError(response);
 }
+
+// export async function getSingleBook(id) {
+//   const response = await client
+//     .from('reading_list')
+//     .
+// }

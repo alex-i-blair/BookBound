@@ -5,6 +5,7 @@ import AuthPage from './AuthPage';
 import { getUser, logout } from './services/fetch-utils';
 import ReadingList from './ReadingList';
 import SearchPage from './SearchPage';
+import BookDetails from './BookDetails';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -46,6 +47,9 @@ function App() {
           </Route>
           <Route exact path="/search-page">
             {currentUser ? <SearchPage /> : <Redirect to="/" />}
+          </Route>
+          <Route exact path="/book-details">
+            {currentUser ? <BookDetails /> : <Redirect to="/" />}
           </Route>
         </Switch>
       </div>
