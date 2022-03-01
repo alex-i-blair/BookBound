@@ -52,6 +52,11 @@ export async function searchBooks(query) {
   const json = await response.json();
   return json.data.items;
 }
+export async function searchSingleBook(query) {
+  const response = await fetch(`/.netlify/functions/singleBook-endpoint?searchQuery=${query}`);
+  const json = await response.json();
+  return json.data.items;
+}
 
 export async function removeFromReadingList(id) {
   const response = await client.from('reading_list').delete().match({ id }).single();

@@ -48,7 +48,7 @@ function App() {
           <Route exact path="/search-page">
             {currentUser ? <SearchPage /> : <Redirect to="/" />}
           </Route>
-          <Route exact path="/book-details">
+          <Route exact path="/book-details/:id">
             {currentUser ? <BookDetails /> : <Redirect to="/" />}
           </Route>
         </Switch>
