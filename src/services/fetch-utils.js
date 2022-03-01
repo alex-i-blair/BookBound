@@ -52,10 +52,11 @@ export async function searchBooks(query) {
   const json = await response.json();
   return json.data.items;
 }
-export async function searchSingleBook(query) {
-  const response = await fetch(`/.netlify/functions/singleBook-endpoint?searchQuery=${query}`);
+export async function searchSingleBook(id) {
+  const response = await fetch(`/.netlify/functions/singleBook-endpoint?searchQuery=${id}`);
   const json = await response.json();
-  return json.data.items;
+  console.log('||', json);
+  return json.data;
 }
 
 export async function removeFromReadingList(id) {

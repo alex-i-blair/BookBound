@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { searchSingleBook } from './services/fetch-utils';
-export default function BookDetails({ book }) {
+export default function BookDetails() {
   const [bookId, setBookId] = useState('');
   const [singleBook, setSingleBook] = useState({});
   const params = useParams();
