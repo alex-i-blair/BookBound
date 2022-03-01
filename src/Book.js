@@ -6,7 +6,7 @@ export default function Book({ book }) {
   book.volumeInfo.authors ? authors.push(book.volumeInfo.authors.join(' | ')) : {};
 
   return (
-    <Link to={`/book-details/${book.id}/${book.volumeInfo.title}`}>
+    <Link to={`/book-details/${book.id}`}>
       
       <div className="book">
         <h3>{book.volumeInfo.title}</h3>
