@@ -3,8 +3,8 @@ import { searchSingleBook } from './services/fetch-utils';
 import { useEffect } from 'react';
 import Book from './Book';
 
-export default function ReadingListItem({ book }) {
-  console.log(book.api_id);
+export default function ReadingListItem({ book, isOnReadingList }) {
+  // console.log(book.api_id);
   const [bookItem, setBookItem] = useState({ volumeInfo: {} });
 
   useEffect(() => {
@@ -19,6 +19,6 @@ export default function ReadingListItem({ book }) {
   // console.log(bookItem);
 
   return <div>
-    <Book book={bookItem} />
+    <Book book={bookItem} isOnReadingList={isOnReadingList} />
   </div>;
 }
