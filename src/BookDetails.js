@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { searchSingleBook } from './services/fetch-utils';
+import { addToReadingList, searchSingleBook } from './services/fetch-utils';
 export default function BookDetails() {
   const [singleBook, setSingleBook] = useState({ volumeInfo: {} });
   const params = useParams();
@@ -12,7 +12,12 @@ export default function BookDetails() {
     }
     getSingleBook();
   }, [params.id]);
-  console.log('one book', singleBook);
+  // console.log('one book', singleBook);
+
+  async function handleClick() {
+    const readingListItem = { api_id: singleBook.id };
+    await addToReadingList(readingListItem);
+  }
 
   const authors = [];
   singleBook.volumeInfo.authors ? authors.push(singleBook.volumeInfo.authors.join(' | ')) : {};
@@ -28,6 +33,7 @@ export default function BookDetails() {
         src={`https://books.google.com/books/content?id=${singleBook.id}&printsec=frontcover&img=1&zoom=5&source=gbs_api`}
       />
       <h4>{singleBook.volumeInfo.description}</h4>
+      <button onClick={handleClick}>Add to My Bookshelf</button>
     </div>
   );
 }

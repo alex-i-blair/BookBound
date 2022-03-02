@@ -20,8 +20,20 @@ export async function signInUser(email, password) {
 }
 
 export async function addToReadingList(book) {
-  const response = await client.from('reading_list').insert(book);
+  const bookId = await checkBookAgainstBookTable(book);
+  const response = await client.from('reading_list').insert({ ...book, book_id: bookId });
   return checkError(response);
+}
+
+export async function checkBookAgainstBookTable(book) {
+  const response = await client.from('reading_list').select().match({ api_id: book.api_id });
+  if (response.data.length === 0) {
+    const response2 = await client.from('book').insert({ recommended: 0 }).single();
+    console.log('test response2', response2);
+    return response2.data.id;
+  }
+  console.log('test response', response);
+  return response.data[0].book_id;
 }
 
 export async function readBook(id) {
@@ -55,7 +67,6 @@ export async function searchBooks(query) {
 export async function searchSingleBook(id) {
   const response = await fetch(`/.netlify/functions/singleBook-endpoint?searchQuery=${id}`);
   const json = await response.json();
-  console.log('||', json);
   return json.data;
 }
 
