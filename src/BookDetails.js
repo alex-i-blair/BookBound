@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { searchSingleBook } from './services/fetch-utils';
+import { addToReadingList, searchSingleBook } from './services/fetch-utils';
 export default function BookDetails() {
-  const [bookId, setBookId] = useState('');
-  const [singleBook, setSingleBook] = useState({});
+  const [singleBook, setSingleBook] = useState({ volumeInfo: {} });
   const params = useParams();
-  console.log('URL stuff', params.id);
 
   useEffect(() => {
     async function getSingleBook() {
@@ -14,19 +12,28 @@ export default function BookDetails() {
     }
     getSingleBook();
   }, [params.id]);
-  console.log('one book', singleBook);
+  // console.log('one book', singleBook);
 
-  
-  // const authors = [];
-  // book.volumeInfo.authors ? authors.push(book.volumeInfo.authors.join(' | ')) : {};
-  // console.log(book);
+  async function handleClick() {
+    const readingListItem = { api_id: singleBook.id };
+    await addToReadingList(readingListItem);
+  }
 
-  return ( 
+  const authors = [];
+  singleBook.volumeInfo.authors ? authors.push(singleBook.volumeInfo.authors.join(' | ')) : {};
+
+  return (
     <div className="book-details">
-      {/* <h3>{book.volumeInfo.title}</h3><p>by: {authors}</p>
-      <p>published by: {book.volumeInfo.publisher} | {book.volumeInfo.publishedDate}</p>
-      <img src={`https://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=5&source=gbs_api`} />
-      <h4>{book.volumeInfo.description}</h4> */}
+      <h3>{singleBook.volumeInfo.title}</h3>
+      <p>by: {authors}</p>
+      <p>
+        published by: {singleBook.volumeInfo.publisher} | {singleBook.volumeInfo.publishedDate}
+      </p>
+      <img
+        src={`https://books.google.com/books/content?id=${singleBook.id}&printsec=frontcover&img=1&zoom=5&source=gbs_api`}
+      />
+      <h4>{singleBook.volumeInfo.description}</h4>
+      <button onClick={handleClick}>Add to My Bookshelf</button>
     </div>
   );
 }
