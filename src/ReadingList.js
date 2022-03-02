@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { getReadingList, getUser, searchBooks } from './services/fetch-utils';
+import { getReadingList, getUser } from './services/fetch-utils';
 import { useState } from 'react';
 import ReadingListItem from './ReadingListItem';
 
@@ -7,7 +7,6 @@ export default function ReadingList({ isOnReadingList }) {
   const [books, setBooks] = useState([]);
   const user = getUser();
   const user_id = user.id;
-  const [bookIds, setBookIds] = useState([]);
 
   useEffect(() => {
     async function fetchBookData() {
@@ -24,7 +23,7 @@ export default function ReadingList({ isOnReadingList }) {
     <div>
       <h2>My Bookshelf</h2>
       {books.map((book, i) => (
-        <ReadingListItem key={`${book}-${i}`} book={book} isOnReadingList={isOnReadingList} />
+        <ReadingListItem key={`${book.id}-${i}`} book={book} isOnReadingList={isOnReadingList} />
       ))}
     </div>
   );
