@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { searchSingleBook } from './services/fetch-utils';
 import { useEffect } from 'react';
+import Book from './Book';
 
 export default function ReadingListItem({ book }) {
   console.log(book.api_id);
@@ -17,5 +18,7 @@ export default function ReadingListItem({ book }) {
   }, [book.api_id]);
   // console.log(bookItem);
 
-  return <div>{bookItem.volumeInfo.title}</div>;
+  return <div>
+    <Book book={bookItem} />
+  </div>;
 }
