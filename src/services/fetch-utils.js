@@ -54,8 +54,13 @@ export async function unReadBook(id) {
   return checkError(response);
 }
 
-export async function getReadingList() {
-  const response = await client.from('reading_list').select().order('id');
+export async function getReadingList(user_id) {
+  const response = await client
+    .from('reading_list')
+    .select()
+    .match({ user_id: user_id })
+    .order('id');
+
   return checkError(response);
 }
 
