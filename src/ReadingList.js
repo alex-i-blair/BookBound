@@ -3,7 +3,7 @@ import { getReadingList, getUser, searchBooks } from './services/fetch-utils';
 import { useState } from 'react';
 import ReadingListItem from './ReadingListItem';
 
-export default function ReadingList() {
+export default function ReadingList({ isOnReadingList }) {
   const [books, setBooks] = useState([]);
   const user = getUser();
   const user_id = user.id;
@@ -24,7 +24,7 @@ export default function ReadingList() {
     <div>
       <h2>My Bookshelf</h2>
       {books.map((book, i) => (
-        <ReadingListItem key={`${book}-${i}`} book={book} />
+        <ReadingListItem key={`${book}-${i}`} book={book} isOnReadingList={isOnReadingList} />
       ))}
     </div>
   );
