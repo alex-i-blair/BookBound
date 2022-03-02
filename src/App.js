@@ -30,6 +30,7 @@ function App() {
           {currentUser && (
             <div className="nav-links">
               <NavLink to="/search-page">Search</NavLink>
+              <NavLink to="/reading-list">My Bookshelf</NavLink>
               <button onClick={handleLogout}>Logout</button>
             </div>
           )}
