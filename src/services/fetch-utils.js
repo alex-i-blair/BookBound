@@ -25,14 +25,19 @@ export async function addToReadingList(book) {
   return checkError(response);
 }
 
+export async function removeFromReadingList(api_id) {
+  const response = await client.from('reading_list').delete().match({ api_id }).single();
+  return checkError(response);
+}
+
 export async function checkBookAgainstBookTable(book) {
   const response = await client.from('reading_list').select().match({ api_id: book.api_id });
   if (response.data.length === 0) {
     const response2 = await client.from('book').insert({ recommended: 0 }).single();
-    console.log('test response2', response2);
+    // console.log('test response2', response2);
     return response2.data.id;
   }
-  console.log('test response', response);
+  // console.log('test response', response);
   return response.data[0].book_id;
 }
 
@@ -75,14 +80,8 @@ export async function searchSingleBook(id) {
   return json.data;
 }
 
-export async function removeFromReadingList(id) {
-  const response = await client.from('reading_list').delete().match({ id }).single();
-  return checkError(response);
-}
-
 // export async function getSingleBook(id) {
 //   const response = await client
 //     .from('reading_list')
 //     .
 // }
-

@@ -16,7 +16,7 @@ export default function ReadingListItem({ book }) {
 
     fetchBookData();
   }, [book.api_id]);
-  console.log('Test book in ReadingListItem', bookItem);
+  // console.log('Test book in ReadingListItem', bookItem);
 
   const authors = [];
   bookItem.volumeInfo.authors ? authors.push(bookItem.volumeInfo.authors.join(' | ')) : {};

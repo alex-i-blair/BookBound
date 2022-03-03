@@ -29,12 +29,12 @@ export default function SearchPage() {
   function isOnReadingList(api_id) {
     const match = readingList.find((item) => item.api_id === api_id);
 
-    console.log(match);
+    // console.log(match);
 
     return Boolean(match);
   }
   const test = isOnReadingList(5);
-  console.log(test);
+  // console.log(test);
 
   return (
     <div className="search-page">
