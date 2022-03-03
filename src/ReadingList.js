@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { getReadingList, getUser } from './services/fetch-utils';
 import { useState } from 'react';
 import ReadingListItem from './ReadingListItem';
+import './styles/ListBooks.css';
 
 export default function ReadingList({ isOnReadingList }) {
   const [books, setBooks] = useState([]);
@@ -20,13 +21,10 @@ export default function ReadingList({ isOnReadingList }) {
   // console.log('||', 'reading list', books);
 
   return (
-    <div>
-      <h2>My Bookshelf</h2>
-      <div className="result-list-container">
-        {books.map((book, i) => (
-          <ReadingListItem key={`${book.id}-${i}`} book={book} isOnReadingList={isOnReadingList} />
-        ))}
-      </div>
+    <div className="result-list-container bookshelf-list">
+      {books.map((book, i) => (
+        <ReadingListItem key={`${book.id}-${i}`} book={book} isOnReadingList={isOnReadingList} />
+      ))}
     </div>
   );
 }

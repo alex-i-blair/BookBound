@@ -19,6 +19,10 @@ html {
   overflow: scroll;
 }
 
+button {
+  font-family: 'Chakra Petch', sans-serif;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -32,7 +36,7 @@ html {
 
 .App-header {
   font-family: 'Chakra Petch', sans-serif;
-  min-height: 30px;
+  min-height: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,26 +48,15 @@ html {
   top: 0;
 }
 
-.book-list-item {
-  /* background-color: white; */
-  width: 8rem;
-  font-size: 0.5rem;
-  height: 11rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  background-color: rgba(149, 206, 93, 0.893);
-
-  /* border: outset 3px grey; */
-}
-
 .overflow-text {
   height: 30px;
-  /* white-space: nowrap; */
-  overflow: hidden;
-  text-overflow: ellipsis;
+  width: 100%;
+  overflow-y: hidden;
+  white-space: pre-wrap;
+  text-overflow: clip;
+}
+
+.overflow-author {
 }
 
 .book-details {
@@ -79,17 +72,6 @@ html {
   margin: 20px auto;
 }
 
-.search-bar {
-  background-color: rgb(37, 37, 189);
-  width: 100%;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.search-bar form {
-}
 .book-details h3 {
   margin: 8px auto;
   text-decoration: underline;
@@ -123,31 +105,15 @@ html {
   overflow: visible;
 }
 
-.book-list-item h5,
-p,
-h3 {
-  margin: 0 auto;
-}
-
-.result-list-container {
-  /* background-color: magenta; */
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-}
-
-.book-list-item img {
-  width: 75px;
-}
-
 .on-shelf {
   opacity: 0.8;
 }
 
 .on-shelf:hover {
   box-shadow: 1;
+}
+
+.nav-links-active {
+  text-decoration: underline;
+  color: var(--rich-black-fogra-29);
 }
