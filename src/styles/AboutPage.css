@@ -26,8 +26,9 @@ section {
 
 .dev-image {
   border-radius: 50%;
-  width: auto;
+  width: 200px;
   height: 200px;
+  object-fit: cover;
   margin: 1rem;
 }
 
