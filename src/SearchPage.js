@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import BookList from './BookList';
 import { getReadingList, getUser, searchBooks } from './services/fetch-utils';
+import './styles/ListBooks.css';
 
 export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -38,12 +39,17 @@ export default function SearchPage() {
 
   return (
     <div className="search-page">
-      <div className="search-bar">
+      <header className="search-bar">
         <form onSubmit={handleSearch}>
-          <input value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+          <input
+            required
+            placeholder="Search Books"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
           <button>Search</button>
         </form>
-      </div>
+      </header>
       <div>
         <BookList books={books} isOnReadingList={isOnReadingList} />
       </div>

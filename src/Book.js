@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { addToReadingList } from './services/fetch-utils';
+import './styles/ListBooks.css';
 
 export default function Book({ book, isOnReadingList }) {
   const alreadyOnList = isOnReadingList(book.id);
@@ -20,10 +21,10 @@ export default function Book({ book, isOnReadingList }) {
         <img
           src={`https://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=5&source=gbs_api`}
         />
-        <div className="overflow-text">
-          <h3>{book.volumeInfo.title}</h3>
-        </div>
-        <p>by: {authors}</p>
+
+        <div className="overflow-text">{book.volumeInfo.title}</div>
+
+        <p className="overflow-author">by: {authors}</p>
       </Link>
       {!alreadyOnList && <button onClick={handleClick}>+</button>}
     </div>

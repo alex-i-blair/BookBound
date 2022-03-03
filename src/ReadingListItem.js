@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { searchSingleBook, removeFromReadingList } from './services/fetch-utils';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import './styles/ListBooks.css';
 
 export default function ReadingListItem({ book }) {
   // console.log(book.api_id);
@@ -27,17 +28,15 @@ export default function ReadingListItem({ book }) {
   }
 
   return (
-    <>
+    <div className="book-list-item">
       <Link to={`/book-details/${bookItem.id}`}>
-        <div title="read-book" className="book-list-item">
-          <img
-            src={`https://books.google.com/books/content?id=${bookItem.id}&printsec=frontcover&img=1&zoom=5&source=gbs_api`}
-          />
-          <h3>{bookItem.volumeInfo.title}</h3>
-          <p>by: {authors}</p>
-        </div>
+        <img
+          src={`https://books.google.com/books/content?id=${bookItem.id}&printsec=frontcover&img=1&zoom=5&source=gbs_api`}
+        />
+        <h3>{bookItem.volumeInfo.title}</h3>
+        <p>by: {authors}</p>
       </Link>
-      <button onClick={handleRemoveClick}>-</button>
-    </>
+      <img src="./remove-button.png" className="remove-" onClick={handleRemoveClick}></img>
+    </div>
   );
 }
