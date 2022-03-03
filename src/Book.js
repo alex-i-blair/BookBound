@@ -13,7 +13,9 @@ export default function Book({ book, isOnReadingList }) {
         <img
           src={`https://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=5&source=gbs_api`}
         />
-        <h3>{book.volumeInfo.title}</h3>
+        <div className="overflow-text">
+          <h3>{book.volumeInfo.title}</h3>
+        </div>
         <p>by: {authors}</p>
       </div>
     </Link>

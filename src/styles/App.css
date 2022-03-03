@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Chakra+Petch:ital,wght@1,700&display=swap');
+
+* {
+  /* CSS HEX */
+  --rich-black-fogra-29: #001524ff;
+  --ming: #15616dff;
+  --blanched-almond: #ffecd1ff;
+  --amber-sae-ece: #ff7d00ff;
+  --kobe: #78290fff;
+}
+
+.App,
+body,
+#root,
+html {
+  text-align: center;
+  height: 100%;
+  background-color: var(--blanched-almond);
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  font-family: 'Chakra Petch', sans-serif;
+  min-height: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  background-color: var(--ming);
+}
+
+.book-list-item {
+  /* background-color: white; */
+  width: 8rem;
+  font-size: 0.5rem;
+  height: 11rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background-color: rgba(149, 206, 93, 0.893);
+
+  /* border: outset 3px grey; */
+}
+
+.overflow-text {
+  height: 30px;
+  /* white-space: nowrap; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.book-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.book-details img {
+  width: 40%;
+  margin: 20px auto;
+}
+
+.search-bar {
+  background-color: rgb(37, 37, 189);
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-bar form {
+}
+.book-details h3 {
+  margin: 8px auto;
+  text-decoration: underline;
+}
+
+.book-details button {
+  margin-top: 20px;
+  width: 70px;
+  padding: 4px;
+  background-color: lightblue;
+}
+
+.nav-links {
+  text-decoration: none;
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.nav-links-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* .author-info {
+  line-height: 1.1rem;
+} */
+
+.book-details .overflow-text:hover {
+  overflow: visible;
+}
+
+.book-list-item h5,
+p,
+h3 {
+  margin: 0 auto;
+}
+
+.result-list-container {
+  /* background-color: magenta; */
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.book-list-item img {
+  width: 75px;
+}
+
+.on-shelf {
+  opacity: 0.8;
+}
+
+.on-shelf:hover {
+  box-shadow: 1;
+}
