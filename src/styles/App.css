@@ -64,6 +64,7 @@ button {
   justify-content: center;
   align-items: center;
   padding: 0 10px;
+  margin-bottom: 2rem;
 }
 
 .book-details img {
@@ -76,9 +77,11 @@ button {
   text-decoration: underline;
 }
 
-.book-details button {
+.book-details button,
+.detail-btns a {
   margin-top: 20px;
-  width: 70px;
+  width: 7rem;
+  height: 3rem;
   padding: 4px;
   background-color: lightblue;
 }
@@ -131,4 +134,11 @@ button {
 .nav-links-active {
   text-decoration: underline;
   color: var(--rich-black-fogra-29);
+}
+
+.detail-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
 }

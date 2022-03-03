@@ -18,9 +18,10 @@
   width: 75px;
 }
 
-img.remove- {
+img.remove-,
+img.add-btn {
   margin: 0;
-  margin-top: 5px;
+  margin-top: 1rem;
   width: 20px;
 }
 

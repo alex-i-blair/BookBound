@@ -7,9 +7,10 @@ import {
   getUser,
   getReadingList,
 } from './services/fetch-utils';
+import dangerouslySetInnerHTML from 'react';
 
 export default function BookDetails() {
-  const [singleBook, setSingleBook] = useState({ volumeInfo: {} });
+  const [singleBook, setSingleBook] = useState({ volumeInfo: {}, saleInfo: {} });
   const params = useParams();
   const [readingList, setReadingList] = useState([]);
   // const [alreadyOnList, setAlreadyOnList] = useState('');
@@ -65,12 +66,19 @@ export default function BookDetails() {
       <img
         src={`https://books.google.com/books/content?id=${singleBook.id}&printsec=frontcover&img=1&zoom=5&source=gbs_api`}
       />
-      <h4>{singleBook.volumeInfo.description}</h4>
-      {alreadyOnList ? (
-        <button onClick={handleRemoveClick}>Remove from Bookshelf</button>
-      ) : (
-        <button onClick={handleClick}>Add to Bookshelf</button>
-      )}
+      <p>{singleBook.volumeInfo.description}</p>
+      <div className="detail-btns">
+        {alreadyOnList ? (
+          <button onClick={handleRemoveClick}>Remove from Bookshelf</button>
+        ) : (
+          <button onClick={handleClick}>Add to Bookshelf</button>
+        )}
+        {singleBook.saleInfo.buyLink && (
+          <button href={`${singleBook.saleInfo.buyLink}`} target="_blank" rel="noreferrer">
+            <p>Purchase Book</p>
+          </button>
+        )}
+      </div>
     </div>
   );
 }
