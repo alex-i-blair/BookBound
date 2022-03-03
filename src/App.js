@@ -6,6 +6,7 @@ import { getUser, logout } from './services/fetch-utils';
 import ReadingList from './ReadingList';
 import SearchPage from './SearchPage';
 import BookDetails from './BookDetails';
+import AboutPage from './AboutPage';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -35,6 +36,9 @@ function App() {
               <NavLink className="nav-links" activeClassName="nav-links-active" to="/reading-list">
                 My Bookshelf
               </NavLink>
+              <NavLink className="nav-links" activeClassName="nav-links-active" to="/about-page">
+                About Us
+              </NavLink>
               <button onClick={handleLogout}>Logout</button>
             </div>
           )}
@@ -55,6 +59,9 @@ function App() {
           </Route>
           <Route exact path="/book-details/:id">
             {currentUser ? <BookDetails /> : <Redirect to="/" />}
+          </Route>
+          <Route exact path="/about-page">
+            {currentUser ? <AboutPage /> : <Redirect to="/" />}
           </Route>
         </Switch>
       </div>
