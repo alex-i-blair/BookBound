@@ -27,7 +27,7 @@ export default function AuthPage({ setCurrentUser }) {
 
   return (
     <>
-      <header className="App-header">BookBound 📚</header>
+      <header className="App-header Auth-header">BookBound 📚</header>
       <div className="auth-page">
         <section className="sign-in-form-container">
           <form className="sign-in-form" onSubmit={handleSignIn}>

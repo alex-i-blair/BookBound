@@ -10,9 +10,9 @@
   border: outset var(--rich-black-fogra-29);
 }
 
-.App-header {
+.Auth-header {
   font-family: 'Chakra Petch', sans-serif;
-  font-size: 2rem;
+  font-size: 2.6rem;
 }
 
 .auth-page {
