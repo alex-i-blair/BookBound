@@ -17,7 +17,7 @@ export default function ReadingList({ isOnReadingList }) {
 
     fetchBookData();
   }, [user_id]);
-  console.log('||', 'reading list', books);
+  // console.log('||', 'reading list', books);
 
   return (
     <div>
