@@ -24,15 +24,43 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.book-list-item {
+  background-color: white;
+  width: 8rem;
+  font-size: .5rem;
+  height: 13rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.book-list-item h5, p, h3 {
+  margin: 0 auto;
+}
+
+.result-list-container {
+  background-color: magenta;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+}
+
+.book-list-item img {
+  width: 75px;
+}
+
+
+
+.on-shelf {
+  opacity: 0.8;
+}
+
+.on-shelf:hover {
+  box-shadow: 1;
 }

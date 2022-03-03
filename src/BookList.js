@@ -7,7 +7,7 @@ import ReadingListItem from './ReadingListItem';
 export default function BookList({ books, isOnReadingList }) {
   const location = useLocation();
   return (
-    <div>
+    <div className='result-list-container'>
       {books.map((book, i) =>
         location.pathname.includes('search') ? (
           <Book key={book.id + i} book={book} isOnReadingList={isOnReadingList} />
