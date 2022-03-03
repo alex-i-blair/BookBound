@@ -51,6 +51,10 @@ export default function BookDetails() {
     window.location.href = '/reading-list';
   }
 
+  function handlePurchaseClick() {
+    window.open(singleBook.saleInfo.buyLink);
+  }
+
   const authors = [];
   singleBook.volumeInfo.authors ? authors.push(singleBook.volumeInfo.authors.join(' | ')) : {};
   // console.log(singleBook.volumeInfo);
@@ -74,9 +78,7 @@ export default function BookDetails() {
           <button onClick={handleClick}>Add to Bookshelf</button>
         )}
         {singleBook.saleInfo.buyLink && (
-          <button href={`${singleBook.saleInfo.buyLink}`} target="_blank" rel="noreferrer">
-            <p>Purchase Book</p>
-          </button>
+          <button onClick={handlePurchaseClick}>Purchase Book</button>
         )}
       </div>
     </div>
