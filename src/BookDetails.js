@@ -42,10 +42,12 @@ export default function BookDetails() {
   async function handleClick() {
     const readingListItem = { api_id: singleBook.id };
     await addToReadingList(readingListItem);
+    window.location.href = '/reading-list';
   }
 
   async function handleRemoveClick() {
     await removeFromReadingList(singleBook.id);
+    window.location.href = '/reading-list';
   }
 
   const authors = [];

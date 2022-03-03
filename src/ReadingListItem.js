@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { searchSingleBook } from './services/fetch-utils';
+import { searchSingleBook, removeFromReadingList } from './services/fetch-utils';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -21,15 +21,23 @@ export default function ReadingListItem({ book }) {
   const authors = [];
   bookItem.volumeInfo.authors ? authors.push(bookItem.volumeInfo.authors.join(' | ')) : {};
 
+  async function handleRemoveClick() {
+    await removeFromReadingList(bookItem.id);
+    window.location.href = '/reading-list';
+  }
+
   return (
-    <Link to={`/book-details/${bookItem.id}`}>
-      <div title="read-book" className="book-list-item">
-        <img
-          src={`https://books.google.com/books/content?id=${bookItem.id}&printsec=frontcover&img=1&zoom=5&source=gbs_api`}
-        />
-        <h3>{bookItem.volumeInfo.title}</h3>
-        <p>by: {authors}</p>
-      </div>
-    </Link>
+    <>
+      <Link to={`/book-details/${bookItem.id}`}>
+        <div title="read-book" className="book-list-item">
+          <img
+            src={`https://books.google.com/books/content?id=${bookItem.id}&printsec=frontcover&img=1&zoom=5&source=gbs_api`}
+          />
+          <h3>{bookItem.volumeInfo.title}</h3>
+          <p>by: {authors}</p>
+        </div>
+      </Link>
+      <button onClick={handleRemoveClick}>-</button>
+    </>
   );
 }
