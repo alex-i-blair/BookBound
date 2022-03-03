@@ -1,7 +1,6 @@
 import React from 'react';
 import LILogo from './LI.png';
 import GHLogo from './GitHub-Mark-120px-plus.png';
-import NormalGuy from './normal-gur.jpg';
 import Cliff from './Cliff.png';
 import Trevor from './Trevor.png';
 import Alex from './Alex.png';

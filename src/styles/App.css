@@ -58,9 +58,6 @@ button {
   text-overflow: clip;
 }
 
-.overflow-author {
-}
-
 .book-details {
   display: flex;
   flex-direction: column;

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   addToReadingList,
@@ -37,7 +37,7 @@ export default function BookDetails() {
 
   const alreadyOnList = isOnReadingList(singleBook.id);
 
-  console.log('on list?', alreadyOnList);
+  // console.log('on list?', alreadyOnList);
 
   async function handleClick() {
     const readingListItem = { api_id: singleBook.id };
@@ -52,7 +52,7 @@ export default function BookDetails() {
 
   const authors = [];
   singleBook.volumeInfo.authors ? authors.push(singleBook.volumeInfo.authors.join(' | ')) : {};
-  console.log(singleBook.volumeInfo);
+  // console.log(singleBook.volumeInfo);
   return (
     <div className="book-details">
       <h3>{singleBook.volumeInfo.title}</h3>
