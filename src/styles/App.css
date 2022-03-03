@@ -1,13 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Chakra+Petch:ital,wght@1,700&display=swap');
+
+* {
+  /* CSS HEX */
+  --rich-black-fogra-29: #001524ff;
+  --ming: #15616dff;
+  --blanched-almond: #ffecd1ff;
+  --amber-sae-ece: #ff7d00ff;
+  --kobe: #78290fff;
+}
+
 .App,
 body,
 #root,
 html {
   text-align: center;
   height: 100%;
-  background: url('./book-background.webp');
-  background-repeat: no-repeat;
-  background-size: auto;
-  background-color: magenta;
+  background-color: var(--blanched-almond);
 }
 
 .App-logo {
@@ -30,6 +38,7 @@ html {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  background-color: var(--ming);
 }
 
 .book-list-item {
