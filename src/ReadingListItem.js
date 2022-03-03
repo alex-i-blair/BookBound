@@ -23,12 +23,12 @@ export default function ReadingListItem({ book }) {
 
   return (
     <Link to={`/book-details/${bookItem.id}`}>
-      <div title="read-book">
-        <h3>{bookItem.volumeInfo.title}</h3>
-        <p>by: {authors}</p>
+      <div title="read-book" className="book-list-item">
         <img
           src={`https://books.google.com/books/content?id=${bookItem.id}&printsec=frontcover&img=1&zoom=5&source=gbs_api`}
         />
+        <h3>{bookItem.volumeInfo.title}</h3>
+        <p>by: {authors}</p>
       </div>
     </Link>
   );

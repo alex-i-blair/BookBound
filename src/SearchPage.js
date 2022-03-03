@@ -38,10 +38,12 @@ export default function SearchPage() {
 
   return (
     <div className="search-page">
-      <form onSubmit={handleSearch}>
-        <input value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
-        <button>Search</button>
-      </form>
+      <div className="search-bar">
+        <form onSubmit={handleSearch}>
+          <input value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+          <button>Search</button>
+        </form>
+      </div>
       <div>
         <BookList books={books} isOnReadingList={isOnReadingList} />
       </div>
