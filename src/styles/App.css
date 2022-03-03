@@ -16,6 +16,8 @@ html {
   text-align: center;
   height: 100%;
   background-color: var(--blanched-almond);
+}
+.App {
   overflow: scroll;
 }
 
