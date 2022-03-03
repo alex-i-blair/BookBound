@@ -42,6 +42,7 @@ export default function SearchPage() {
       <header className="search-bar">
         <form onSubmit={handleSearch}>
           <input
+            required
             placeholder="Search Books"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
