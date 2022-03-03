@@ -83,17 +83,33 @@ button {
   background-color: lightblue;
 }
 
-.nav-links {
+.nav-links,
+.nav-links-container button {
   text-decoration: none;
   color: white;
   font-weight: 800;
   cursor: pointer;
+  background-color: var(--ming);
+  border: none;
+  font-size: smaller;
+}
+.nav-links:hover,
+.nav-links-container button:hover {
+  text-decoration: none;
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
+  background-color: var(--ming);
+  border: none;
+  font-size: smaller;
+  text-decoration: underline;
 }
 
 .nav-links-container {
   width: 100%;
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 
 /* .author-info {
