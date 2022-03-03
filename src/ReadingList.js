@@ -22,9 +22,11 @@ export default function ReadingList({ isOnReadingList }) {
   return (
     <div>
       <h2>My Bookshelf</h2>
-      {books.map((book, i) => (
-        <ReadingListItem key={`${book.id}-${i}`} book={book} isOnReadingList={isOnReadingList} />
-      ))}
+      <div className="result-list-container">
+        {books.map((book, i) => (
+          <ReadingListItem key={`${book.id}-${i}`} book={book} isOnReadingList={isOnReadingList} />
+        ))}
+      </div>
     </div>
   );
 }

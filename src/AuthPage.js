@@ -1,4 +1,5 @@
 import React from 'react';
+import './styles/AuthPage.css';
 import { useState } from 'react';
 import { signInUser, signUpUser } from './services/fetch-utils';
 
@@ -25,29 +26,34 @@ export default function AuthPage({ setCurrentUser }) {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSignIn}>
-        <input
-          required
-          placeholder="Email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          required
-          placeholder="Password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <div className="auth-btns">
-          <button className="sign-in-btn">Sign In</button>
-          <button className="sign-up-btn" onClick={handleSignUp}>
-            Sign Up
-          </button>
-        </div>
-      </form>
-    </div>
+    <>
+      <header className="App-header Auth-header">BookBound 📚</header>
+      <div className="auth-page">
+        <section className="sign-in-form-container">
+          <form className="sign-in-form" onSubmit={handleSignIn}>
+            <input
+              required
+              placeholder="Email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              required
+              placeholder="Password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <div className="auth-btns">
+              <button className="sign-in-btn">Sign In</button>
+              <button className="sign-up-btn" onClick={handleSignUp}>
+                Sign Up
+              </button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </>
   );
 }

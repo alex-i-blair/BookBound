@@ -1,4 +1,4 @@
-import './App.css';
+import './styles/App.css';
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, NavLink, Redirect } from 'react-router-dom';
 import AuthPage from './AuthPage';
@@ -28,9 +28,13 @@ function App() {
       <div className="App">
         <header className="App-header">
           {currentUser && (
-            <div className="nav-links">
-              <NavLink to="/search-page">Search</NavLink>
-              <NavLink to="/reading-list">My Bookshelf</NavLink>
+            <div className="nav-links-container">
+              <NavLink className="nav-links" activeClassName="nav-links-active" to="/search-page">
+                Search
+              </NavLink>
+              <NavLink className="nav-links" activeClassName="nav-links-active" to="/reading-list">
+                My Bookshelf
+              </NavLink>
               <button onClick={handleLogout}>Logout</button>
             </div>
           )}

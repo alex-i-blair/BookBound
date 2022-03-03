@@ -54,10 +54,12 @@ export default function BookDetails() {
   return (
     <div className="book-details">
       <h3>{singleBook.volumeInfo.title}</h3>
-      <p>by: {authors}</p>
-      <p>
-        published by: {singleBook.volumeInfo.publisher} | {singleBook.volumeInfo.publishedDate}
-      </p>
+      <div className="author-info">
+        <p>by: {authors}</p>
+        <p>
+          published by: {singleBook.volumeInfo.publisher} | {singleBook.volumeInfo.publishedDate}
+        </p>
+      </div>
       <img
         src={`https://books.google.com/books/content?id=${singleBook.id}&printsec=frontcover&img=1&zoom=5&source=gbs_api`}
       />
