@@ -52,7 +52,7 @@ export default function BookDetails() {
 
   const authors = [];
   singleBook.volumeInfo.authors ? authors.push(singleBook.volumeInfo.authors.join(' | ')) : {};
-
+  console.log(singleBook.volumeInfo);
   return (
     <div className="book-details">
       <h3>{singleBook.volumeInfo.title}</h3>
