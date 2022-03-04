@@ -18,13 +18,16 @@ export default function ReadingList({ isOnReadingList }) {
 
     fetchBookData();
   }, [user_id]);
-  // console.log('||', 'reading list', books);
 
   return (
     <div className="result-list-container bookshelf-list">
-      {books.map((book, i) => (
-        <ReadingListItem key={`${book.id}-${i}`} book={book} isOnReadingList={isOnReadingList} />
-      ))}
+      {books.length ? (
+        books.map((book, i) => (
+          <ReadingListItem key={`${book.id}-${i}`} book={book} isOnReadingList={isOnReadingList} />
+        ))
+      ) : (
+        <h4>Find books to add to your shelf!</h4>
+      )}
     </div>
   );
 }

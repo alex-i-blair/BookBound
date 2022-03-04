@@ -9,10 +9,9 @@ import {
 } from './services/fetch-utils';
 
 export default function BookDetails() {
-  const [singleBook, setSingleBook] = useState({ volumeInfo: {} });
+  const [singleBook, setSingleBook] = useState({ volumeInfo: {}, saleInfo: {} });
   const params = useParams();
   const [readingList, setReadingList] = useState([]);
-  // const [alreadyOnList, setAlreadyOnList] = useState('');
 
   useEffect(() => {
     async function getSingleBook() {
@@ -22,7 +21,6 @@ export default function BookDetails() {
     getSingleBook();
     fetchReadingList();
   }, [params.id]);
-  // console.log('one book', singleBook);
 
   async function fetchReadingList() {
     const user = getUser();
@@ -37,8 +35,6 @@ export default function BookDetails() {
 
   const alreadyOnList = isOnReadingList(singleBook.id);
 
-  // console.log('on list?', alreadyOnList);
-
   async function handleClick() {
     const readingListItem = { api_id: singleBook.id };
     await addToReadingList(readingListItem);
@@ -50,9 +46,13 @@ export default function BookDetails() {
     window.location.href = '/reading-list';
   }
 
+  function handlePurchaseClick() {
+    window.open(singleBook.saleInfo.buyLink);
+  }
+
   const authors = [];
   singleBook.volumeInfo.authors ? authors.push(singleBook.volumeInfo.authors.join(' | ')) : {};
-  // console.log(singleBook.volumeInfo);
+
   return (
     <div className="book-details">
       <h3>{singleBook.volumeInfo.title}</h3>
@@ -65,12 +65,18 @@ export default function BookDetails() {
       <img
         src={`https://books.google.com/books/content?id=${singleBook.id}&printsec=frontcover&img=1&zoom=5&source=gbs_api`}
       />
-      <h4>{singleBook.volumeInfo.description}</h4>
-      {alreadyOnList ? (
-        <button onClick={handleRemoveClick}>Remove from Bookshelf</button>
-      ) : (
-        <button onClick={handleClick}>Add to Bookshelf</button>
-      )}
+      <p>{singleBook.volumeInfo.description}</p>
+      <div className="detail-btns">
+        {alreadyOnList ? (
+          <button onClick={handleRemoveClick}>Remove from Bookshelf</button>
+        ) : (
+          <button onClick={handleClick}>Add to Bookshelf</button>
+        )}
+        {singleBook.saleInfo.buyLink && (
+          <button onClick={handlePurchaseClick}>Purchase Book</button>
+        )}
+        <button>Recommend</button>
+      </div>
     </div>
   );
 }

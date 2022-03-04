@@ -25,7 +25,7 @@ export default function Book({ book, isOnReadingList }) {
 
         <p className="overflow-author">by: {authors}</p>
       </Link>
-      {!alreadyOnList && <button onClick={handleClick}>+</button>}
+      {!alreadyOnList && <img className="add-btn" src="./add-button.png" onClick={handleClick} />}
     </div>
   );
 }

@@ -34,10 +34,8 @@ export async function checkBookAgainstBookTable(book) {
   const response = await client.from('reading_list').select().match({ api_id: book.api_id });
   if (response.data.length === 0) {
     const response2 = await client.from('book').insert({ recommended: 0 }).single();
-    // console.log('test response2', response2);
     return response2.data.id;
   }
-  // console.log('test response', response);
   return response.data[0].book_id;
 }
 
@@ -79,9 +77,3 @@ export async function searchSingleBook(id) {
   const json = await response.json();
   return json.data;
 }
-
-// export async function getSingleBook(id) {
-//   const response = await client
-//     .from('reading_list')
-//     .
-// }
