@@ -6,21 +6,30 @@ import {
   searchSingleBook,
   getUser,
   getReadingList,
+  recommendBook,
+  unRecommendBook,
 } from './services/fetch-utils';
 
 export default function BookDetails() {
   const [singleBook, setSingleBook] = useState({ volumeInfo: {}, saleInfo: {} });
   const params = useParams();
   const [readingList, setReadingList] = useState([]);
+  const [recommended, setRecommended] = useState(false);
 
   useEffect(() => {
     async function getSingleBook() {
       const response = await searchSingleBook(params.id);
       setSingleBook(response);
+      console.log(response);
+      if (readingList.length) {
+        const match = await findReadingListMatch(response.id);
+        match && setRecommended(match.recommended);
+      } else {
+        await fetchReadingList();
+      }
     }
     getSingleBook();
-    fetchReadingList();
-  }, [params.id]);
+  }, [params.id, readingList]);
 
   async function fetchReadingList() {
     const user = getUser();
@@ -32,6 +41,8 @@ export default function BookDetails() {
     const match = readingList.find((item) => item.api_id === api_id);
     return Boolean(match);
   }
+
+  // const recommended = isRecommended(singleBook.id);
 
   const alreadyOnList = isOnReadingList(singleBook.id);
 
@@ -50,6 +61,30 @@ export default function BookDetails() {
     window.open(singleBook.saleInfo.buyLink);
   }
 
+  async function findReadingListMatch(api_id) {
+    console.log(readingList, api_id);
+    const match = readingList.find((item) => item.api_id === api_id);
+    return match;
+  }
+
+  // async function isRecommended() {
+  //   const match = await findReadingListMatch(singleBook.id);
+  //   console.log(match);
+  //   setRecommended(match.recommended);
+  // }
+
+  async function handleRecommendClick() {
+    const match = await findReadingListMatch(singleBook.id);
+    console.log(match);
+    if (match) {
+      setRecommended(!match.recommended);
+      match.recommended ? await unRecommendBook(match.id) : await recommendBook(match.id);
+    } else {
+      await recommendBook(singleBook.id);
+    }
+    await fetchReadingList();
+  }
+
   const authors = [];
   singleBook.volumeInfo.authors ? authors.push(singleBook.volumeInfo.authors.join(' | ')) : {};
 
@@ -65,7 +100,7 @@ export default function BookDetails() {
       <img
         src={`https://books.google.com/books/content?id=${singleBook.id}&printsec=frontcover&img=1&zoom=5&source=gbs_api`}
       />
-      <p>{singleBook.volumeInfo.description}</p>
+      <p dangerouslySetInnerHTML={{ __html: singleBook.volumeInfo.description }} />
       <div className="detail-btns">
         {alreadyOnList ? (
           <button onClick={handleRemoveClick}>Remove from Bookshelf</button>
@@ -75,7 +110,15 @@ export default function BookDetails() {
         {singleBook.saleInfo.buyLink && (
           <button onClick={handlePurchaseClick}>Purchase Book</button>
         )}
-        <button>Recommend</button>
+        {alreadyOnList && (
+          <>
+            {recommended ? (
+              <button onClick={handleRecommendClick}>Unrecommend</button>
+            ) : (
+              <button onClick={handleRecommendClick}>Recommend</button>
+            )}
+          </>
+        )}
       </div>
     </div>
   );
