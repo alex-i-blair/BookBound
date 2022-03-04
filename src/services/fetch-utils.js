@@ -72,8 +72,26 @@ export async function searchBooks(query) {
   const json = await response.json();
   return json.data.items;
 }
+
 export async function searchSingleBook(id) {
   const response = await fetch(`/.netlify/functions/singleBook-endpoint?searchQuery=${id}`);
   const json = await response.json();
   return json.data;
+}
+
+export async function recommendBook(id) {
+  const response = await client
+    .from('reading_list')
+    .update({ recommended: true })
+    .match({ id })
+    .single();
+  return checkError(response);
+}
+export async function unRecommendBook(id) {
+  const response = await client
+    .from('reading_list')
+    .update({ recommended: false })
+    .match({ id })
+    .single();
+  return checkError(response);
 }

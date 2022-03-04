@@ -39,6 +39,7 @@ img.add-btn {
 
 .result-list-container {
   height: 100%;
+  /* max-width: 65%; */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
