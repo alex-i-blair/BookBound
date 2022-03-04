@@ -15,8 +15,13 @@ export default function BookDetails() {
   const params = useParams();
   const [readingList, setReadingList] = useState([]);
   const [recommended, setRecommended] = useState(false);
+  const [match, setMatch] = useState({});
 
   useEffect(() => {
+    async function findReadingListMatch(api_id) {
+      const match = readingList.find((item) => item.api_id === api_id);
+      setMatch(match);
+    }
     async function getSingleBook() {
       const response = await searchSingleBook(params.id);
       setSingleBook(response);
@@ -41,8 +46,6 @@ export default function BookDetails() {
     return Boolean(match);
   }
 
-  // const recommended = isRecommended(singleBook.id);
-
   const alreadyOnList = isOnReadingList(singleBook.id);
 
   async function handleClick() {
@@ -60,13 +63,7 @@ export default function BookDetails() {
     window.open(singleBook.saleInfo.buyLink);
   }
 
-  async function findReadingListMatch(api_id) {
-    const match = readingList.find((item) => item.api_id === api_id);
-    return match;
-  }
-
   async function handleRecommendClick() {
-    const match = await findReadingListMatch(singleBook.id);
     if (match) {
       setRecommended(!match.recommended);
       match.recommended ? await unRecommendBook(match.id) : await recommendBook(match.id);
