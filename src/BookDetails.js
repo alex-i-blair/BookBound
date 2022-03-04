@@ -7,13 +7,11 @@ import {
   getUser,
   getReadingList,
 } from './services/fetch-utils';
-import dangerouslySetInnerHTML from 'react';
 
 export default function BookDetails() {
   const [singleBook, setSingleBook] = useState({ volumeInfo: {}, saleInfo: {} });
   const params = useParams();
   const [readingList, setReadingList] = useState([]);
-  // const [alreadyOnList, setAlreadyOnList] = useState('');
 
   useEffect(() => {
     async function getSingleBook() {
@@ -23,7 +21,6 @@ export default function BookDetails() {
     getSingleBook();
     fetchReadingList();
   }, [params.id]);
-  // console.log('one book', singleBook);
 
   async function fetchReadingList() {
     const user = getUser();
@@ -37,8 +34,6 @@ export default function BookDetails() {
   }
 
   const alreadyOnList = isOnReadingList(singleBook.id);
-
-  // console.log('on list?', alreadyOnList);
 
   async function handleClick() {
     const readingListItem = { api_id: singleBook.id };
@@ -57,7 +52,7 @@ export default function BookDetails() {
 
   const authors = [];
   singleBook.volumeInfo.authors ? authors.push(singleBook.volumeInfo.authors.join(' | ')) : {};
-  // console.log(singleBook.volumeInfo);
+
   return (
     <div className="book-details">
       <h3>{singleBook.volumeInfo.title}</h3>
@@ -80,6 +75,7 @@ export default function BookDetails() {
         {singleBook.saleInfo.buyLink && (
           <button onClick={handlePurchaseClick}>Purchase Book</button>
         )}
+        <button>Recommend</button>
       </div>
     </div>
   );

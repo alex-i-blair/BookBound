@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import './styles/ListBooks.css';
 
 export default function ReadingListItem({ book }) {
-  // console.log(book.api_id);
   const [bookItem, setBookItem] = useState({ volumeInfo: {} });
 
   useEffect(() => {
@@ -17,7 +16,6 @@ export default function ReadingListItem({ book }) {
 
     fetchBookData();
   }, [book.api_id]);
-  // console.log('Test book in ReadingListItem', bookItem);
 
   const authors = [];
   bookItem.volumeInfo.authors ? authors.push(bookItem.volumeInfo.authors.join(' | ')) : {};

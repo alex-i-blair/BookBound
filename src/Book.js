@@ -5,7 +5,6 @@ import './styles/ListBooks.css';
 
 export default function Book({ book, isOnReadingList }) {
   const alreadyOnList = isOnReadingList(book.id);
-  console.log('Test book in Book.js', book);
   const authors = [];
   book.volumeInfo.authors ? authors.push(book.volumeInfo.authors.join(' | ')) : {};
 
