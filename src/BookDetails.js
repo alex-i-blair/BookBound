@@ -20,7 +20,6 @@ export default function BookDetails() {
     async function getSingleBook() {
       const response = await searchSingleBook(params.id);
       setSingleBook(response);
-      console.log(response);
       if (readingList.length) {
         const match = await findReadingListMatch(response.id);
         match && setRecommended(match.recommended);
@@ -62,20 +61,12 @@ export default function BookDetails() {
   }
 
   async function findReadingListMatch(api_id) {
-    console.log(readingList, api_id);
     const match = readingList.find((item) => item.api_id === api_id);
     return match;
   }
 
-  // async function isRecommended() {
-  //   const match = await findReadingListMatch(singleBook.id);
-  //   console.log(match);
-  //   setRecommended(match.recommended);
-  // }
-
   async function handleRecommendClick() {
     const match = await findReadingListMatch(singleBook.id);
-    console.log(match);
     if (match) {
       setRecommended(!match.recommended);
       match.recommended ? await unRecommendBook(match.id) : await recommendBook(match.id);
