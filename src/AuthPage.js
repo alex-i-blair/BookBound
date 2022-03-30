@@ -7,6 +7,7 @@ export default function AuthPage({ setCurrentUser }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  // nice reusable function
   function clearForm() {
     setEmail('');
     setPassword('');
