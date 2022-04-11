@@ -9,13 +9,14 @@ export default function BookList({ books, isOnReadingList }) {
   return (
     <div className='result-list-container'>
       {books.map((book, i) =>
-        location.pathname.includes('search') ? (
+      // nice conditional rendering. I wonder if you could have used <Route /> from react-router to manage this?
+        location.pathname.includes('search') ? 
           <Book key={book.id + i} book={book} isOnReadingList={isOnReadingList} />
-        ) : (
+         : 
           <ReadingListItem key={book.id + i}
             book={book}
             isOnReadingList={isOnReadingList} />
-        ))}
+        )}
     </div>
   );
 }

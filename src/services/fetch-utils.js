@@ -67,6 +67,7 @@ export async function getReadingList(user_id) {
   return checkError(response);
 }
 
+// nice! I didn't see a lot of groups abstracting their netlify functions into fetch utils, which is a great idea to keep your `useEffect`s nice and clean.
 export async function searchBooks(query) {
   const response = await fetch(`/.netlify/functions/book-endpoint?searchQuery=${query}`);
   const json = await response.json();

@@ -19,15 +19,18 @@ export default function BookDetails() {
 
   useEffect(() => {
     async function findReadingListMatch(api_id) {
-      const match = readingList.find((item) => item.api_id === api_id);
+      const match = getMatch(api_id);
+
       setMatch(match);
     }
+
     async function getSingleBook() {
       const response = await searchSingleBook(params.id);
       setSingleBook(response);
       if (readingList.length) {
         const match = await findReadingListMatch(response.id);
-        match && setRecommended(match.recommended);
+        
+        if (match) setRecommended(match.recommended);
       } else {
         await fetchReadingList();
       }
@@ -42,20 +45,26 @@ export default function BookDetails() {
   }
 
   function isOnReadingList(api_id) {
-    const match = readingList.find((item) => item.api_id === api_id);
+    const match = getMatch(api_id);
+
     return Boolean(match);
   }
 
-  const alreadyOnList = isOnReadingList(singleBook.id);
-
+  // looks like you use this behavior twice, might as well make a function
+  function getMatch(id) {
+    return readingList.find((item) => item.api_id === id);
+  }
+  
   async function handleClick() {
     const readingListItem = { api_id: singleBook.id };
     await addToReadingList(readingListItem);
+    // i'd rather see react-router's history.push here to navigate within the app
     window.location.href = '/reading-list';
   }
 
   async function handleRemoveClick() {
     await removeFromReadingList(singleBook.id);
+    // again, i'd rather see react-router's history.push here to navigate within the app
     window.location.href = '/reading-list';
   }
 
@@ -66,15 +75,25 @@ export default function BookDetails() {
   async function handleRecommendClick() {
     if (match) {
       setRecommended(!match.recommended);
-      match.recommended ? await unRecommendBook(match.id) : await recommendBook(match.id);
+      // ternaries are usually for conditional assignment or return values. for function calls with side effects, if/else blocks are more standard
+      if (match.recommended)  await unRecommendBook(match.id)
+      else await recommendBook(match.id);
+
     } else {
       await recommendBook(singleBook.id);
     }
+
     await fetchReadingList();
   }
 
+  // this should live in a react useState. you never want use state in a react app that does not live in a useState call
   const authors = [];
-  singleBook.volumeInfo.authors ? authors.push(singleBook.volumeInfo.authors.join(' | ')) : {};
+
+   // kind of seems like an if statement makes more sense, since there is no assignment
+   // also, this should be using react state, not free-floating memory
+  if (singleBook.volumeInfo.authors) authors.push(singleBook.volumeInfo.authors.join(' | '))
+
+  const alreadyOnList = isOnReadingList(singleBook.id);
 
   return (
     <div className="book-details">
@@ -88,25 +107,25 @@ export default function BookDetails() {
       <img
         src={`https://books.google.com/books/content?id=${singleBook.id}&printsec=frontcover&img=1&zoom=5&source=gbs_api`}
       />
+      {/* nice work dangerously setting this HTML! you will want to be careful with this and rewad into the security risks that come with trusting raw HTML that lives in a database */}
       <p dangerouslySetInnerHTML={{ __html: singleBook.volumeInfo.description }} />
       <div className="detail-btns">
-        {alreadyOnList ? (
-          <button onClick={handleRemoveClick}>Remove from Bookshelf</button>
-        ) : (
-          <button onClick={handleClick}>Add to Bookshelf</button>
-        )}
-        {singleBook.saleInfo.buyLink && (
+        {/* no need for these parentheses, but that's just a style preference I have */}
+        {alreadyOnList 
+          ? <button onClick={handleRemoveClick}>Remove from Bookshelf</button>
+          : <button onClick={handleClick}>Add to Bookshelf</button>
+        }
+        {singleBook.saleInfo.buyLink && 
           <button onClick={handlePurchaseClick}>Purchase Book</button>
-        )}
-        {alreadyOnList && (
+        }
+        {alreadyOnList && 
           <>
-            {recommended ? (
-              <button onClick={handleRecommendClick}>Unrecommend</button>
-            ) : (
-              <button onClick={handleRecommendClick}>Recommend</button>
-            )}
+            {recommended 
+              ? <button onClick={handleRecommendClick}>Unrecommend</button>
+              : <button onClick={handleRecommendClick}>Recommend</button>
+            }
           </>
-        )}
+        }
       </div>
     </div>
   );
